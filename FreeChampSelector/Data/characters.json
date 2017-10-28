@@ -1,0 +1,148 @@
+﻿{
+  "characters": [
+    {
+      "name": "Bodvar",
+      "weapons": [ "Sword", "Hammer" ]
+    },
+    {
+      "name": "Cassidy",
+      "weapons": [ "Guns", "Hammer" ]
+    },
+    {
+      "name": "Orion",
+      "weapons": [ "Spear", "Lance" ]
+    },
+    {
+      "name": "Lord Vraxx",
+      "weapons": [ "Guns", "Lance" ]
+    },
+    {
+      "name": "Gnash",
+      "weapons": [ "Spear", "Hammer" ]
+    },
+    {
+      "name": "Queen Nai",
+      "weapons": [ "Spear", "Katars" ]
+    },
+    {
+      "name": "Hattori",
+      "weapons": [ "Sword", "Spear" ]
+    },
+    {
+      "name": "Roland",
+      "weapons": [ "Sword", "Lance" ]
+    },
+    {
+      "name": "Scarlet",
+      "weapons": [ "Hammer", "Lance" ]
+    },
+    {
+      "name": "Ada",
+      "weapons": [ "Guns", "Lance" ]
+    },
+    {
+      "name": "Sentinel",
+      "weapons": [ "Hammer", "Katars" ]
+    },
+    {
+      "name": "Lucien",
+      "weapons": [ "Guns", "Katars" ]
+    },
+    {
+      "name": "Bodvar",
+      "weapons": [ "Sword", "Hammer" ]
+    },
+    {
+      "name": "Teros",
+      "weapons": [ "Axe", "Hammer" ]
+    },
+    {
+      "name": "Brynn",
+      "weapons": [ "Axe", "Spear" ]
+    },
+    {
+      "name": "Asuri",
+      "weapons": [ "Katars", "Sword" ]
+    },
+    {
+      "name": "Barraza",
+      "weapons": [ "Guns", "Axe" ]
+    },
+    {
+      "name": "Ember",
+      "weapons": [ "Bow", "Katars" ]
+    },
+    {
+      "name": "Azoth",
+      "weapons": [ "Axe", "Bow" ]
+    },
+    {
+      "name": "Koji",
+      "weapons": [ "Sword", "Katars" ]
+    },
+    {
+      "name": "Ulgrim",
+      "weapons": [ "Axe", "Lance" ]
+    },
+    {
+      "name": "Diana",
+      "weapons": [ "Bow", "Guns" ]
+    },
+    {
+      "name": "Ember",
+      "weapons": [ "Bow", "Katars" ]
+    },
+    {
+      "name": "Jhala",
+      "weapons": [ "Sword", "Axe" ]
+    },
+    {
+      "name": "Kor",
+      "weapons": [ "Gauntlets", "Hammer" ]
+    },
+    {
+      "name": "Wu Shang",
+      "weapons": [ "Gauntlets", "Spear" ]
+    },
+    {
+      "name": "Val",
+      "weapons": [ "Gauntlets", "Sword" ]
+    },
+    {
+      "name": "Ragnir",
+      "weapons": [ "Katars", "Axe" ]
+    },
+    {
+      "name": "Cross",
+      "weapons": [ "Guns", "Gauntlets" ]
+    },
+    {
+      "name": "Mirage",
+      "weapons": [ "Scythe", "Spear" ]
+    },
+    {
+      "name": "Nix",
+      "weapons": [ "Scythe", "Guns" ]
+    },
+    {
+      "name": "Mordex",
+      "weapons": [ "Scythe", "Gauntlets" ]
+    },
+    {
+      "name": "Yumiko",
+      "weapons": [ "Bow", "Hammer" ]
+    },
+    {
+      "name": "Artemis",
+      "weapons": [ "Lance", "Scythe" ]
+    },
+    {
+      "name": "Caspian",
+      "weapons": [ "Gauntlets", "Katars" ]
+    },
+    {
+      "name": "Sidra",
+      "weapons": [ "Cannon", "Sword" ]
+    }
+  ]
+}
