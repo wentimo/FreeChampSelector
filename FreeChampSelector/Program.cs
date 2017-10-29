@@ -26,26 +26,56 @@ namespace FreeChampSelector
         {
             var jsonData = File.ReadAllText("Data\\characters.json");
             var data = JsonConvert.DeserializeObject<CharacterSheet>(jsonData);
-            data.characters.ForEach(Console.WriteLine);
-
-            var availableWeapons = data.characters.SelectMany(x => x.weapons).Distinct().ToList();
 
             var charLimit = 6;
+            string input = "";
+            while (input != "Q")
+            {
+                var (characters, availableWeapons) = CreateUniqueWeaponsList(data, charLimit);
+                while (availableWeapons.Count > 0)
+                {
+                    var (newCharacters, newAvailableWeapons) = CreateUniqueWeaponsList(data, charLimit);
+                    availableWeapons = newAvailableWeapons;
+                    characters = newCharacters;
+                }
+                Console.WriteLine("List of characters chosen:");
+                characters.ForEach(Console.WriteLine);
+                if (availableWeapons.Count > 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("List of weapons not represented:");
+                    availableWeapons.ForEach(Console.WriteLine);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                input = Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        private static (List<Character>, List<string>) CreateUniqueWeaponsList(CharacterSheet data, int charLimit)
+        {
             var characters = new List<Character>();
-
-            var first = data.characters[new Random().Next(1, data.characters.Count)];
-            characters.Add(first);
-            first.weapons.ToList().ForEach(x => availableWeapons.Remove(x));
-
-            var availableCharacters = new List<Character>();
+            var availableWeapons = data.characters.SelectMany(x => x.weapons).Distinct().ToList();
+            var availableCharacters = new List<Character>(data.characters);
             while (characters.Count < charLimit)
             {
-                availableCharacters = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) && 
-                                                                      availableWeapons.Contains(x.weapons[1])).ToList();
-                var nextCharacter = availableCharacters[new Random().Next(1, data.characters.Count)];
+                Character nextCharacter;
+                var optimalCharacterChoices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) && availableWeapons.Contains(x.weapons[1])).ToList();
+                if (optimalCharacterChoices.Any())
+                {
+                    nextCharacter = optimalCharacterChoices[new Random().Next(0, optimalCharacterChoices.Count - 1)];
+                }
+                else
+                {
+                    var suboptimalCharacterChoices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) || availableWeapons.Contains(x.weapons[1])).ToList();
+                    nextCharacter = suboptimalCharacterChoices[new Random().Next(0, suboptimalCharacterChoices.Count - 1)];
+                }
+                availableCharacters.Remove(nextCharacter);
+                characters.Add(nextCharacter);
+                nextCharacter.weapons.ToList().ForEach(x => availableWeapons.Remove(x));
             }
 
-            Console.Read();
+            return (characters, availableWeapons);
         }
     }
 }
