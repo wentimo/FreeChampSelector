@@ -20,7 +20,7 @@ namespace FreeChampSelector
         public List<Character> characters;
     }
 
-    class Program
+    class FreeChampSelector
     {
         static void Main(string[] args)
         {
@@ -31,10 +31,10 @@ namespace FreeChampSelector
             string input = "";
             while (input != "Q")
             {
-                var (characters, availableWeapons) = CreateUniqueWeaponsList(data, charLimit);
+                var (characters, availableWeapons) = CreateCharacterList(data, charLimit);
                 while (availableWeapons.Count > 0)
                 {
-                    var (newCharacters, newAvailableWeapons) = CreateUniqueWeaponsList(data, charLimit);
+                    var (newCharacters, newAvailableWeapons) = CreateCharacterList(data, charLimit);
                     availableWeapons = newAvailableWeapons;
                     characters = newCharacters;
                 }
@@ -52,24 +52,19 @@ namespace FreeChampSelector
             }
         }
 
-        private static (List<Character>, List<string>) CreateUniqueWeaponsList(CharacterSheet data, int charLimit)
+        private static (List<Character>, List<string>) CreateCharacterList(CharacterSheet data, int charLimit)
         {
             var characters = new List<Character>();
             var availableWeapons = data.characters.SelectMany(x => x.weapons).Distinct().ToList();
             var availableCharacters = new List<Character>(data.characters);
             while (characters.Count < charLimit)
             {
-                Character nextCharacter;
-                var optimalCharacterChoices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) && availableWeapons.Contains(x.weapons[1])).ToList();
-                if (optimalCharacterChoices.Any())
+                var choices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) && availableWeapons.Contains(x.weapons[1])).ToList();
+                if (!choices.Any())
                 {
-                    nextCharacter = optimalCharacterChoices[new Random().Next(0, optimalCharacterChoices.Count - 1)];
+                    choices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) || availableWeapons.Contains(x.weapons[1])).ToList();
                 }
-                else
-                {
-                    var suboptimalCharacterChoices = availableCharacters.Where(x => availableWeapons.Contains(x.weapons[0]) || availableWeapons.Contains(x.weapons[1])).ToList();
-                    nextCharacter = suboptimalCharacterChoices[new Random().Next(0, suboptimalCharacterChoices.Count - 1)];
-                }
+                var nextCharacter = choices[new Random().Next(0, choices.Count - 1)];
                 availableCharacters.Remove(nextCharacter);
                 characters.Add(nextCharacter);
                 nextCharacter.weapons.ToList().ForEach(x => availableWeapons.Remove(x));
